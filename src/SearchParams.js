@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { ANIMALS } from "@frontendmasters/pet";
+import useDropDown from "./useDropDown";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seatlle, WA");
-  const [animal, setAnimal] = useState("Dog");
-  const [breed, setBreed] = useState("");
   const [breeds, setBreeds] = useState([]);
+  const [animal, AnimalDropDown] = useDropDown("Animal", "dog", ANIMALS);
+  const [breed, BreedDropDown] = useDropDown("Breed", "", breeds);
   return (
     <div className="search-params">
       <form>
@@ -18,7 +19,8 @@ const SearchParams = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-        <label htmlFor="animal">
+        {/* === USE DROPDOWN HOOK === */}
+        {/* <label htmlFor="animal">
           Animal
           <select
             name="animal"
@@ -34,8 +36,9 @@ const SearchParams = () => {
               </option>
             ))}
           </select>
-        </label>
-        <label htmlFor="breed">
+        </label> */}
+        {/* === USE DROPDOWN HOOK === */}
+        {/* <label htmlFor="breed">
           Breed
           <select
             name="breed"
@@ -52,7 +55,9 @@ const SearchParams = () => {
               </option>
             ))}
           </select>
-        </label>
+        </label> */}
+        <AnimalDropDown />
+        <BreedDropDown />
         <button>Submit</button>
       </form>
     </div>
