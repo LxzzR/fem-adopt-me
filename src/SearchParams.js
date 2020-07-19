@@ -30,43 +30,6 @@ const SearchParams = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-        {/* === USE-DROPDOWN HOOK === */}
-        {/* <label htmlFor="animal">
-          Animal
-          <select
-            name="animal"
-            id="animal"
-            value={animal}
-            onChange={(e) => setAnimal(e.target.value)}
-            onBlur={(e) => setAnimal(e.target.value)}
-          >
-            <option>All</option>
-            {ANIMALS.map((animal) => (
-              <option key="animal" value={animal}>
-                {animal}
-              </option>
-            ))}
-          </select>
-        </label> */}
-        {/* === USE-DROPDOWN HOOK === */}
-        {/* <label htmlFor="breed">
-          Breed
-          <select
-            name="breed"
-            id="breed"
-            value={breed}
-            onChange={(e) => setBreed(e.target.value)}
-            onBlur={(e) => setBreed(e.target.value)}
-            disabled={breeds.length === 0}
-          >
-            <option>All</option>
-            {breeds.map((breedString) => (
-              <option key={breedString} value={breedString}>
-                {breedString}
-              </option>
-            ))}
-          </select>
-        </label> */}
         <AnimalDropDown />
         <BreedDropDown />
         <button>Submit</button>
