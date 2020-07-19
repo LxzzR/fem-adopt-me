@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import { ANIMALS } from "@frontendmasters/pet";
+import React, { useState, useEffect } from "react";
+import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropDown from "./useDropDown";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seatlle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropDown] = useDropDown("Animal", "dog", ANIMALS);
-  const [breed, BreedDropDown] = useDropDown("Breed", "", breeds);
+  const [breed, BreedDropDown, setBreed] = useDropDown("Breed", "", breeds);
+
+  useEffect(() => {
+    setBreeds([]);
+    setBreed("");
+
+    pet.breeds(animal).then(({ breeds: apiBreeds }) => {
+      const breedStrings = apiBreeds.map(({ name }) => name);
+      setBreeds(breedStrings);
+    }, console.error);
+  }, [animal, setBreed, setBreeds]);
+
   return (
     <div className="search-params">
       <form>
@@ -19,7 +30,7 @@ const SearchParams = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-        {/* === USE DROPDOWN HOOK === */}
+        {/* === USE-DROPDOWN HOOK === */}
         {/* <label htmlFor="animal">
           Animal
           <select
@@ -37,7 +48,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label> */}
-        {/* === USE DROPDOWN HOOK === */}
+        {/* === USE-DROPDOWN HOOK === */}
         {/* <label htmlFor="breed">
           Breed
           <select
